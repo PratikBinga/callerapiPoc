@@ -18,34 +18,34 @@ namespace DocSignCallingAPI.Controllers
         {
             return View();
         }
-        /// <summary>
-        /// Http post to handle file uploads
-        /// </summary>
-        /// <param name="files"></param>
-        /// <returns></returns>
-        [System.Web.Http.HttpPost]
-        public async Task<IActionResult> UploadFile(List<IFormFile> files)
-        {
-            long size = files.Sum(f => f.Length);
-            var filePath = "";
+        ///// <summary>
+        ///// Http post to handle file uploads
+        ///// </summary>
+        ///// <param name="files"></param>
+        ///// <returns></returns>
+        //[System.Web.Http.HttpPost]
+        //public async Task<IActionResult> UploadFile(List<IFormFile> files)
+        //{
+        //    long size = files.Sum(f => f.Length);
+        //    var filePath = "";
 
-            foreach (var formFile in files)
-            {
-                filePath = Path.Combine(
-                       Directory.GetCurrentDirectory(), "UploadedFiles",
-                       formFile.FileName);
+        //    foreach (var formFile in files)
+        //    {
+        //        filePath = Path.Combine(
+        //               Directory.GetCurrentDirectory(), "UploadedFiles",
+        //               formFile.FileName);
 
-                if (formFile.Length > 0)
-                {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                }
-            }
+        //        if (formFile.Length > 0)
+        //        {
+        //            using (var stream = new FileStream(filePath, FileMode.Create))
+        //            {
+        //                await formFile.CopyToAsync(stream);
+        //            }
+        //        }
+        //    }
 
-            return Ok(new { count = files.Count, size, filePath });
-        }
+        //    return Ok(new { count = files.Count, size, filePath });
+        //}
 
 
     }
